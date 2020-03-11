@@ -1,2 +1,2 @@
 # DataBses-Course
-Data Base SoftUni
+Data Base SoftUni BG (Ms Sql)
