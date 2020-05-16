@@ -1,2 +1,5 @@
-# DataBses-Course
-Data Base SoftUni BG (Ms Sql)
+C# Advanced SoftUni BG
+
+C # Advanced
+
+C# OOP
