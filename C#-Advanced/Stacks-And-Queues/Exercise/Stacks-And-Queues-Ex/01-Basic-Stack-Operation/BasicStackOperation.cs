@@ -12,8 +12,6 @@ namespace _01_Basic_Stack_Operation
 
             int[] elements = Console.ReadLine().Split().Select(int.Parse).ToArray();
 
-            int smallestElement = elements[0];
-
             Stack<int> stack = new Stack<int>(tokens[0]);
 
             for (int i = 0; i < tokens[0]; i++)
@@ -21,21 +19,11 @@ namespace _01_Basic_Stack_Operation
                 int elementToPush = elements[i];
 
                 stack.Push(elementToPush);
-
-                if (elementToPush < smallestElement)
-                {
-                    smallestElement = elementToPush;
-                }
             }
 
             for (int i = 0; i < tokens[1]; i++)
             {
                 stack.Pop();
-            }
-
-            if (stack.Count==0)
-            {
-                smallestElement = 0;
             }
 
             if (stack.Contains(tokens[2]))
@@ -44,6 +32,22 @@ namespace _01_Basic_Stack_Operation
             }
             else
             {
+                int smallestElement = 0;
+
+                if (stack.Count>0)
+                {
+                    smallestElement = stack.Pop();
+
+                    while (stack.Count > 0)
+                    {
+                        int currElement = stack.Pop();
+                        if (currElement < smallestElement)
+                        {
+                            smallestElement = currElement;
+                        }
+                    }
+                }
+
                 Console.WriteLine(smallestElement);
             }
         }
