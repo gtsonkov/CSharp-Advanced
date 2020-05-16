@@ -10,12 +10,8 @@ namespace _05_Fashion_Boutique
         {
             int[] boxInput = Console.ReadLine().Split().Select(int.Parse).ToArray();
             int rackCapacity = int.Parse(Console.ReadLine());
-            Stack<int> box = new Stack<int>(boxInput.Count());
 
-            foreach (var item in boxInput)
-            {
-                box.Push(item);
-            }
+            Stack<int> box = new Stack<int>(boxInput);
 
             int currRackState = 0;
             int racksUsed = 1;

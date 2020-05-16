@@ -12,12 +12,7 @@ namespace _04_Fast_Food
 
             var ordersInput = Console.ReadLine().Split().Select(int.Parse).ToArray();
 
-            Queue<int> orders = new Queue<int>();
-
-            foreach (var order in ordersInput)
-            {
-                orders.Enqueue(order);
-            }
+            Queue<int> orders = new Queue<int>(ordersInput);
 
             Console.WriteLine(orders.Max());
 
