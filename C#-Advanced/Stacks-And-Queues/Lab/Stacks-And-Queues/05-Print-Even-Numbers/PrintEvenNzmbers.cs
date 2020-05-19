@@ -11,7 +11,7 @@ namespace _05_Print_Even_Numbers
             int[] input = Console.ReadLine()
                 .Split()
                 .Select(int.Parse)
-                .Where(x=> x%2 == 0)
+                .Where(x=> ((x % 2) == 0))
                 .ToArray();
 
             Queue<int> queue = new Queue<int>(input);
