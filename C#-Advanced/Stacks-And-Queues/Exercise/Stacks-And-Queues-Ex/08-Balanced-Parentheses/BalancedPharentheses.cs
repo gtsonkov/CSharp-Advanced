@@ -37,6 +37,12 @@ namespace _08_Balanced_Parentheses
                 }
             }
 
+            if (openBrackets.Count>0)
+            {
+                Console.WriteLine("NO");
+                return;
+            }
+
             Console.WriteLine("YES");
         }
 
