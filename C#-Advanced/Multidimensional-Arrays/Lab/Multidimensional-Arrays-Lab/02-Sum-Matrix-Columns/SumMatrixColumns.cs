@@ -18,6 +18,7 @@ namespace _02_Sum_Matrix_Columns
 
             for (int i = 0; i < dimensions[0]; i++)
             {
+                int currSum = 0;
                 int[] NumbersInput = Console.ReadLine()
                     .Split(" ", StringSplitOptions.RemoveEmptyEntries)
                     .Select(int.Parse)
@@ -25,8 +26,9 @@ namespace _02_Sum_Matrix_Columns
                 for (int j = 0; j < dimensions[1]; j++)
                 {
                     matrix[i, j] = NumbersInput[j];
-                    sumColumns[j] += matrix[i, j];
+                    currSum += matrix[i, j];
                 }
+
             }
 
             foreach (var colSum in sumColumns)
