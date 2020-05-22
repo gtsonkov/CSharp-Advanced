@@ -13,7 +13,10 @@ namespace _08_Balanced_Parentheses
         {
             char[] input = Console.ReadLine().ToArray();
 
-            if (input.Count() == 0 || !(input.Count() % 2 == 0) || (!IsOpenBracked(input[0])))
+            if (input.Count() == 0
+                || (!(input.Count() % 2 == 0))
+                || (!IsOpenBracked(input[0]))
+                || (IsOpenBracked(input[input.Length - 1])))
             {
                 Console.WriteLine("NO");
                 return;
@@ -29,18 +32,12 @@ namespace _08_Balanced_Parentheses
                 }
                 else
                 {
-                    if (openBrackets.Count == 0 || !(MachBrackets(openBrackets.Pop(),br)))
+                    if (openBrackets.Count == 0 || !(MachBrackets(openBrackets.Pop(), br)))
                     {
                         Console.WriteLine("NO");
                         return;
                     }
                 }
-            }
-
-            if (openBrackets.Count>0)
-            {
-                Console.WriteLine("NO");
-                return;
             }
 
             Console.WriteLine("YES");
