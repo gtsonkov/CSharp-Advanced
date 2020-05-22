@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-SumMatrix-Elements", "01
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-Sum-Matrix-Columns", "02-Sum-Matrix-Columns\02-Sum-Matrix-Columns.csproj", "{0B4F83BA-49FC-4B0E-87C9-587AA4D46852}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-Jagget-Array-Manipulation", "06-Jagget-Array-Manipulation\06-Jagget-Array-Manipulation.csproj", "{32E3AF60-4BEA-4910-8550-0579F26B5883}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-Pascal-Triangle", "07-Pascal-Triangle\07-Pascal-Triangle.csproj", "{5C46F314-3112-4603-90D0-9ACB2839B431}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{0B4F83BA-49FC-4B0E-87C9-587AA4D46852}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B4F83BA-49FC-4B0E-87C9-587AA4D46852}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B4F83BA-49FC-4B0E-87C9-587AA4D46852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E3AF60-4BEA-4910-8550-0579F26B5883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E3AF60-4BEA-4910-8550-0579F26B5883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E3AF60-4BEA-4910-8550-0579F26B5883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E3AF60-4BEA-4910-8550-0579F26B5883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C46F314-3112-4603-90D0-9ACB2839B431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C46F314-3112-4603-90D0-9ACB2839B431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C46F314-3112-4603-90D0-9ACB2839B431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C46F314-3112-4603-90D0-9ACB2839B431}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
