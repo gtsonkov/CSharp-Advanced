@@ -19,6 +19,7 @@ namespace _04_Symbol_In_Matrix
             }
 
             char charToSearch = char.Parse(Console.ReadLine());
+
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < n; j++)
@@ -30,6 +31,7 @@ namespace _04_Symbol_In_Matrix
                     }
                 }
             }
+
             Console.WriteLine($"{charToSearch} does not occur in the matrix");
         }
     }
