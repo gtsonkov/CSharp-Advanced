@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Linq;
 
 namespace DiagonalDifference
 {
-    using System.Linq;
     class DiagonalDifference
     {
         static void Main(string[] args)

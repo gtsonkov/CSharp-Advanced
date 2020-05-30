@@ -18,6 +18,7 @@ namespace _07_KnightGame
         {
             byte size = byte.Parse(Console.ReadLine());
             char[,] matrix = new char[size, size];
+
             for (byte i = 0; i < size; i++)
             {
                 string fillField = Console.ReadLine();
@@ -26,13 +27,16 @@ namespace _07_KnightGame
                     matrix[i, j] = fillField[j];
                 }
             }
+
             int removed = 0;
             var CurrPos = new Position();
             var MaxPos = new Position();
+
             while (true)
             {
                 byte maxAttack = 0;
                 byte attacks = 0;
+
                 for (byte i = 0; i < size; i++)
                 {
                     CurrPos.row = i;
@@ -48,6 +52,7 @@ namespace _07_KnightGame
                                     attacks += 1;
                                 }
                             }
+
                             if (attacks > maxAttack)
                             {
                                 maxAttack = attacks;
@@ -57,6 +62,7 @@ namespace _07_KnightGame
                         }
                     }
                 }
+
                 if (maxAttack > 0)
                 {
                     matrix[MaxPos.row, MaxPos.col] = '0';
