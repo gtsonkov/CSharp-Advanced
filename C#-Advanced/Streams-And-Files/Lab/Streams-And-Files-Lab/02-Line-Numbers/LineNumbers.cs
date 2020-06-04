@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace _02_Line_Numbers
 {
@@ -10,8 +8,6 @@ namespace _02_Line_Numbers
         {
             string path = Path.Combine("Data","input.txt");
             string dest = Path.Combine("Data", "output.txt");
-
-            
 
             var lines = File.ReadAllLines(path);
 
