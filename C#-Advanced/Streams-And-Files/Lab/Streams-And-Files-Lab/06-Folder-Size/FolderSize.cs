@@ -14,7 +14,7 @@ namespace _06_Folder_Size
 
             double size = GetSize(dataPath);
 
-            Console.WriteLine($"Directory size: {size} Byte");
+            Console.WriteLine($"Directory size: {size} Bytes");
         }
 
         private static long GetSize(string path)
