@@ -15,8 +15,6 @@ namespace _05_File_Slice
 
                 long partSize = (long)Math.Ceiling((double)size/4);
 
-                long lastReadStart = 0;
-
                 for (int i = 1; i <= 4; i++)
                 {
                     byte[] buffer = new byte[partSize];
@@ -24,7 +22,7 @@ namespace _05_File_Slice
                     using (var output = new FileStream($"Data\\Part{i}.txt",FileMode.Create))
                     {
                         int bytesReaded = input.Read(buffer, 0, (int)partSize);
-                        lastReadStart += partSize;
+
                         output.Write(buffer,0, bytesReaded);
                     }
                 }
