@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace _07_Predicate_For_Names
 {
-    class Program
+    class PredicateForNames
     {
         static void Main(string[] args)
         {

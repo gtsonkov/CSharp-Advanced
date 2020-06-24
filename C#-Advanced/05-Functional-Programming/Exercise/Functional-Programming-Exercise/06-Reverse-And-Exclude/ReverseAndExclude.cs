@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace _06_Reverse_And_Exclude
 {
-    class Program
+    class ReverseAndExclude
     {
         static void Main(string[] args)
         {
