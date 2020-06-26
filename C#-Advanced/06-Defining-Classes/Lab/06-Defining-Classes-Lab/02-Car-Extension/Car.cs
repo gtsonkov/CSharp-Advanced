@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace CarManufacturer
 {
@@ -7,13 +8,11 @@ namespace CarManufacturer
         private string make;
         private string model;
         private int year;
-        private double fuelConsumption;
-        private double fuelQuantity;
 
         public string Make
         {
             get { return this.make; }
-            set { this.make = value;  }
+            set { this.make = value; }
         }
 
         public string Model
@@ -28,34 +27,33 @@ namespace CarManufacturer
             set { this.year = value; }
         }
 
-        public double FuelConsumtion
+        public double FuelConsumption
         {
-            get { return this.fuelConsumption; }
-            set { this.fuelConsumption = value; }
+            get; set;
         }
 
         public double FuelQuantity
         {
-            get { return this.fuelQuantity; }
-            set { this.fuelQuantity = value; }
+            get; set;
         }
 
         public void Drive(double distance)
         {
-            double remainFuel = this.fuelQuantity - distance * this.fuelConsumption;
-            if ( remainFuel > 0)
-            {
-                fuelQuantity -= remainFuel;
-            }
+            bool canContinue = this.FuelQuantity - (distance * this.FuelConsumption) > 0;
+            if (canContinue)
+                this.FuelQuantity -= distance * this.FuelConsumption;
             else
-            {
                 Console.WriteLine("Not enough fuel to perform this trip!");
-            }
         }
 
-        public void WhoAmI()
+        public string WhoAmI()
         {
-            Console.WriteLine($"Make: {this.Make}\nModel: {this.Model}\nYear: {this.Year}\nFuel: {this.FuelQuantity:F2}L");
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Make: {this.Make}");
+            sb.AppendLine($"Model: {this.Model}");
+            sb.AppendLine($"Year: {this.Year}");
+            sb.Append($"Fuel: {this.FuelQuantity:F2}L");
+            return sb.ToString();
         }
     }
 }
