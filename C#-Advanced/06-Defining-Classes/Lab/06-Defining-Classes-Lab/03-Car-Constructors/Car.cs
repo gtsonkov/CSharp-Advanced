@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Threading;
 
 namespace CarManufacturer
 {
@@ -10,6 +11,30 @@ namespace CarManufacturer
         private int year;
         private double fuelConsumption;
         private double fuelQuantity;
+
+        public Car()
+        {
+            this.Make = "VW";
+            this.Model = "Golf";
+            this.Year = 2025;
+            this.FuelQuantity = 200.00;
+            this.FuelConsumption = 10.00;
+        }
+
+        public Car(string make, string model, int year)
+            :this()
+        {
+            this.Make = make;
+            this.Model = model;
+            this.Year = year;
+        }
+
+        public Car(string make, string model, int year, double fuelQuatity, double fuelConsumption)
+            :this(make,model,year)
+        {
+            this.FuelQuantity = fuelQuatity;
+            this.FuelConsumption = fuelConsumption;
+        }
 
         public string Make
         {

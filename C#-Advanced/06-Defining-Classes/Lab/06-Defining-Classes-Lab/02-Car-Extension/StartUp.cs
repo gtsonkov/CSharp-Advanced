@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CarManufacturer
+﻿namespace CarManufacturer
 {
     public class StartUp
     {
