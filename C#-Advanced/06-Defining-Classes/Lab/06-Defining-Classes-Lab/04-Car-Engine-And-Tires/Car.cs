@@ -10,6 +10,9 @@ namespace CarManufacturer
         private int year;
         private double fuelConsumption;
         private double fuelQuantity;
+        private Engine engine;
+        private Tire[] tires;
+
 
         public Car()
         {
@@ -21,7 +24,7 @@ namespace CarManufacturer
         }
 
         public Car(string make, string model, int year)
-            :this()
+            : this()
         {
             this.Make = make;
             this.Model = model;
@@ -29,10 +32,17 @@ namespace CarManufacturer
         }
 
         public Car(string make, string model, int year, double fuelQuatity, double fuelConsumption)
-            :this(make,model,year)
+            : this(make, model, year)
         {
             this.FuelQuantity = fuelQuatity;
             this.FuelConsumption = fuelConsumption;
+        }
+
+        public Car(string make, string model, int year, double fuelQuatity, double fuelConsumption, Engine engine, Tire[] tires)
+            :this(make,model,year,fuelQuatity,fuelConsumption)
+        {
+            this.Engine = engine;
+            this.Tires = tires;
         }
 
         public string Make
@@ -71,11 +81,23 @@ namespace CarManufacturer
             }
         }
 
+        public Engine Engine
+        {
+            get { return this.engine; }
+            set { this.engine = value; }
+        }
+
+        public Tire[] Tires 
+        {
+            get { return this.tires; } 
+            set { this.tires = value; }
+        }
+
         public void Drive(double distance)
         {
-            bool canContinue = this.FuelQuantity - ((distance/100) * this.FuelConsumption) > 0;
+            bool canContinue = this.FuelQuantity - ((distance / 100) * this.FuelConsumption) > 0;
             if (canContinue)
-                this.FuelQuantity -= (distance/100) * this.FuelConsumption;
+                this.FuelQuantity -= (distance / 100) * this.FuelConsumption;
             else
                 Console.WriteLine("Not enough fuel to perform this trip!");
         }
