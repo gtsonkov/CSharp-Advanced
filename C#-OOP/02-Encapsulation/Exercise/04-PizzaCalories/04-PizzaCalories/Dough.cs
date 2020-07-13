@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace _04_PizzaCalories
 {
@@ -20,20 +21,54 @@ namespace _04_PizzaCalories
         };
 
 
-        private double weight;
-        private string flourType;
-        private string bakingTechnique;
+        private double _weight;
+        private string _flourType;
+        private string _bakingTechnique;
 
-        public double Weight
+        public Dough(string flourType, string backingTechnique, double weight)
+        {
+            FlourType = flourType;
+            BakingTechnique = backingTechnique;
+            _weight = weight;
+        }
+
+        public string FlourType
         {
             get
             {
-                return this.weight;
+                return this._flourType;
             }
             set
             {
-                this.weight = value;
+                //TO DO Validation
+                this._flourType = value;
             }
+        }
+
+        public string BakingTechnique
+        {
+            get
+            {
+                return this._bakingTechnique;
+            }
+            set
+            {
+                //TO DO Validation
+                this._bakingTechnique = value;
+            }
+        }
+
+        public double CaloriesPerGram
+        {
+            get
+            {
+                return CalculateCaloriesPerGram();
+            }
+        }
+
+        private double CalculateCaloriesPerGram()
+        {
+            throw new NotImplementedException();
         }
     }
 }
