@@ -6,7 +6,6 @@ namespace _04_PizzaCalories
     {
         static void Main(string[] args)
         {
-            
         }
     }
 }

@@ -92,7 +92,7 @@ namespace _04_PizzaCalories
 
         private double CalculateCaloriesPerGram()
         {
-            return ((2 * this.Weight) * this.DefaultFlourTypes[this.FlourType] * this.DefaultBakingTechnique[this.BakingTechnique]);
+            return ((DefaultCalories * this.Weight) * this.DefaultFlourTypes[this.FlourType] * this.DefaultBakingTechnique[this.BakingTechnique]);
         }
     }
 }
