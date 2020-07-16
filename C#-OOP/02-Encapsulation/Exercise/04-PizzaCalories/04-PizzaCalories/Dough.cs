@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace _04_PizzaCalories
 {
     public class Dough
     {
         private const double DefaultCalories = 2.0;
+        private const double MIN_WEIGHT = 1.00;
+        private const double MAX_WEIGHT = 200.00;
 
         private readonly Dictionary<string, double> DefaultFlourTypes = new Dictionary<string, double>
         {
-            {"White", 1.50 },
-            {"Wholegrain", 1.0 },
+            {"white", 1.50 },
+            {"wholegrain", 1.0 },
         };
 
         private readonly Dictionary<string, double> DefaultBakingTechnique = new Dictionary<string, double>
         {
-            {"Crispy", 0.9 },
-            {"Chewy", 1.1 },
-            {"Homemade", 1.0 },
+            {"crispy", 0.9 },
+            {"chewy", 1.1 },
+            {"homemade", 1.0 },
         };
 
 
@@ -33,15 +34,15 @@ namespace _04_PizzaCalories
             this.Weight = weight;
         }
 
-        public double Weight 
-        { 
+        private double Weight
+        {
             get
             {
                 return this._weight;
             }
             set
             {
-                if (value < 1 || value > 200)
+                if (value < MIN_WEIGHT || value > MAX_WEIGHT)
                 {
                     throw new ArgumentException("Dough weight should be in the range [1..200].");
                 }
@@ -50,47 +51,49 @@ namespace _04_PizzaCalories
             }
         }
 
-        public string FlourType
+        private string FlourType
         {
             get
             {
                 return this._flourType;
             }
+
             set
             {
-                if (!DefaultFlourTypes.ContainsKey(value))
+                if (!DefaultFlourTypes.ContainsKey(value.ToLower()))
                 {
                     throw new ArgumentException("Invalid type of dough.");
                 }
-                this._flourType = value;
+                this._flourType = value.ToLower();
             }
         }
 
-        public string BakingTechnique
+        private string BakingTechnique
         {
             get
             {
                 return this._bakingTechnique;
             }
+
             set
             {
-                if (!DefaultBakingTechnique.ContainsKey(value))
+                if (!DefaultBakingTechnique.ContainsKey(value.ToLower()))
                 {
                     throw new ArgumentException("Invalid type of dough.");
                 }
-                this._bakingTechnique = value;
+                this._bakingTechnique = value.ToLower();
             }
         }
 
-        public double CaloriesPerGram
+        public double Calories
         {
             get
             {
-                return CalculateCaloriesPerGram();
+                return CalculateCalories();
             }
         }
 
-        private double CalculateCaloriesPerGram()
+        private double CalculateCalories()
         {
             return ((DefaultCalories * this.Weight) * this.DefaultFlourTypes[this.FlourType] * this.DefaultBakingTechnique[this.BakingTechnique]);
         }
