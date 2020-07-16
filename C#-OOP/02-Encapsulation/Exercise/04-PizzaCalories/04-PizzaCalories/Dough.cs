@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace _04_PizzaCalories
 {
@@ -9,15 +10,15 @@ namespace _04_PizzaCalories
 
         private readonly Dictionary<string, double> DefaultFlourTypes = new Dictionary<string, double>
         {
-            {"white", 1.50 },
-            {"wholegrain", 1.0 },
+            {"White", 1.50 },
+            {"Wholegrain", 1.0 },
         };
 
         private readonly Dictionary<string, double> DefaultBakingTechnique = new Dictionary<string, double>
         {
-            {"crispy", 0.9 },
-            {"chewy", 1.1 },
-            {"homemade", 1.0 },
+            {"Crispy", 0.9 },
+            {"Chewy", 1.1 },
+            {"Homemade", 1.0 },
         };
 
 
@@ -27,9 +28,26 @@ namespace _04_PizzaCalories
 
         public Dough(string flourType, string backingTechnique, double weight)
         {
-            FlourType = flourType;
-            BakingTechnique = backingTechnique;
-            _weight = weight;
+            this.FlourType = flourType;
+            this.BakingTechnique = backingTechnique;
+            this.Weight = weight;
+        }
+
+        public double Weight 
+        { 
+            get
+            {
+                return this._weight;
+            }
+            set
+            {
+                if (value < 1 || value > 200)
+                {
+                    throw new ArgumentException("Dough weight should be in the range [1..200].");
+                }
+
+                this._weight = value;
+            }
         }
 
         public string FlourType
@@ -40,7 +58,10 @@ namespace _04_PizzaCalories
             }
             set
             {
-                //TO DO Validation
+                if (!DefaultFlourTypes.ContainsKey(value))
+                {
+                    throw new ArgumentException("Invalid type of dough.");
+                }
                 this._flourType = value;
             }
         }
@@ -53,7 +74,10 @@ namespace _04_PizzaCalories
             }
             set
             {
-                //TO DO Validation
+                if (!DefaultBakingTechnique.ContainsKey(value))
+                {
+                    throw new ArgumentException("Invalid type of dough.");
+                }
                 this._bakingTechnique = value;
             }
         }
@@ -68,7 +92,7 @@ namespace _04_PizzaCalories
 
         private double CalculateCaloriesPerGram()
         {
-            throw new NotImplementedException();
+            return ((2 * this.Weight) * this.DefaultFlourTypes[this.FlourType] * this.DefaultBakingTechnique[this.BakingTechnique]);
         }
     }
 }
