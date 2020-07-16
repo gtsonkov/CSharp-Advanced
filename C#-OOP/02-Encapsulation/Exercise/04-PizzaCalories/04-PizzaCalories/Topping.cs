@@ -55,18 +55,20 @@ namespace _04_PizzaCalories
             {
                 if (value < MIN_WEIGHT || value > MAX_WEIGHT)
                 {
-                    throw new ArgumentException($"{this.ToppigName} weight should be in the range[1..50].");
+                    throw new ArgumentException($"{this.ToppigName} weight should be in the range [{MIN_WEIGHT}..{MAX_WEIGHT}].");
                 }
 
                 this._weight = value;
             }
         }
 
+        public double CaloriesPerGram() => DefaultCalories * this.DefaultToppingTypes[this.ToppigName.ToLower()];
+
         public double Calories => this.CalculateCalories();
 
         private double CalculateCalories()
         {
-            return ((DefaultCalories * this.Weight) * DefaultToppingTypes[this.ToppigName.ToLower()]);
+            return ((DefaultCalories * this.Weight) * this.DefaultToppingTypes[this.ToppigName.ToLower()]);
         }
     }
 }

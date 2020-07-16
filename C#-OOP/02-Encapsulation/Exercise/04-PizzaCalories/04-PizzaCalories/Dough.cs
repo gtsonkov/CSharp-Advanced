@@ -68,6 +68,11 @@ namespace _04_PizzaCalories
             }
         }
 
+        public double CaloriesPerGram ()
+        {
+            return DefaultCalories * this.DefaultFlourTypes[this.FlourType] * this.DefaultBakingTechnique[this.BakingTechnique];
+        }
+
         private string BakingTechnique
         {
             get
