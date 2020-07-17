@@ -6,6 +6,7 @@ namespace _05_Football_Team_Generator
     {
         private const int MIN_STRAS = 0;
         private const int MAX_STRAS = 100;
+        private const double COUNT_OF_SKILLS = 5.00;
 
         private string _name;
 
@@ -39,7 +40,7 @@ namespace _05_Football_Team_Generator
             }
         }
 
-        public double SkillLevel => (Endurance + Sprint + Dribble + Passing + Shooting) / 5.00;
+        public double SkillLevel => (Endurance + Sprint + Dribble + Passing + Shooting) / COUNT_OF_SKILLS;
 
         public int Endurance
         {
