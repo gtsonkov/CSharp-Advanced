@@ -5,7 +5,7 @@ namespace _05_Football_Team_Generator
     public class Player
     {
         private const int MIN_STRAS = 0;
-        private const int MAX_STRAS = 0;
+        private const int MAX_STRAS = 100;
 
         private string _name;
 
@@ -25,10 +25,10 @@ namespace _05_Football_Team_Generator
             this.Shooting = shooting;
         }
 
-        public string Name 
+        public string Name
         {
-            get => this._name; 
-            set
+            get => this._name;
+            private set
             {
                 if (string.IsNullOrWhiteSpace(value) || value == string.Empty)
                 {
@@ -39,13 +39,13 @@ namespace _05_Football_Team_Generator
             }
         }
 
-        public int SkillLevel => (Endurance + Sprint + Dribble + Passing + Shooting) / 5;
+        public double SkillLevel => (Endurance + Sprint + Dribble + Passing + Shooting) / 5.00;
 
-        public int Endurance 
-        { 
+        public int Endurance
+        {
             get => this._endurance;
-            
-            set
+
+            private set
             {
                 try
                 {
@@ -58,14 +58,14 @@ namespace _05_Football_Team_Generator
                 }
 
                 this._endurance = value;
-            } 
+            }
         }
 
         public int Sprint
         {
             get => this._sprint;
 
-            set
+            private set
             {
                 try
                 {
@@ -85,7 +85,7 @@ namespace _05_Football_Team_Generator
         {
             get => this._dribble;
 
-            set
+            private set
             {
                 try
                 {
@@ -105,7 +105,7 @@ namespace _05_Football_Team_Generator
         {
             get => this._passing;
 
-            set
+            private set
             {
                 try
                 {
@@ -125,7 +125,7 @@ namespace _05_Football_Team_Generator
         {
             get => this._shooting;
 
-            set
+            private set
             {
                 try
                 {
