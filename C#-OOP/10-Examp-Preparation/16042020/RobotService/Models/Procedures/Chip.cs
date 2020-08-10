@@ -15,6 +15,8 @@ namespace RobotService.Models.Procedures
                 throw new ArgumentException(ExceptionMessages.AlreadyChipped);
             }
 
+            robot.ProcedureTime -= procedureTime;
+
             robot.Happiness -= 5;
             robot.IsChipped = true;
 

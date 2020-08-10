@@ -28,7 +28,6 @@ namespace RobotService.Core
 
             SeedRobotTypes();
             SeedProcedures();
-            ;
         }
 
         public string Charge(string robotName, int procedureTime)
@@ -43,13 +42,15 @@ namespace RobotService.Core
 
             IRobot currRobot = this._garage.Robots[robotName];
 
-            this._procedures[procedureName].DoService(currRobot, procedureTime);
+            this._procedures[procedureName.ToLower()].DoService(currRobot, procedureTime);
 
             return $"{currRobot.Name} had charge procedure";
         }
 
         public string Chip(string robotName, int procedureTime)
         {
+            string procedureName = "Chip";
+
             if (!CheckRobotExist(robotName))
             {
                 string msg = string.Format(ExceptionMessages.InexistingRobot, robotName);
@@ -58,10 +59,15 @@ namespace RobotService.Core
 
             IRobot currRobot = this._garage.Robots[robotName];
 
-            throw new NotImplementedException();
+            this._procedures[procedureName.ToLower()].DoService(currRobot,procedureTime);
+
+            return $"{currRobot.Name} had chip procedure";
         }
 
-        public string History(string procedureType) => throw new System.NotImplementedException();
+        public string History(string procedureType)
+        {
+            return this._procedures[procedureType.ToLower()].History();
+        }
 
         public string Manufacture(string robotType, string name, int energy, int happiness, int procedureTime)
         {
@@ -99,24 +105,36 @@ namespace RobotService.Core
 
         public string Polish(string robotName, int procedureTime)
         {
+            string procedureName = "Polish";
+
             if (!CheckRobotExist(robotName))
             {
                 string msg = string.Format(ExceptionMessages.InexistingRobot, robotName);
                 throw new ArgumentException(msg);
             }
 
-            throw new NotImplementedException();
+            IRobot currRobot = this._garage.Robots[robotName];
+
+            this._procedures[procedureName.ToLower()].DoService(currRobot, procedureTime);
+
+            return $"{currRobot.Name} had polish procedure";
         }
 
         public string Rest(string robotName, int procedureTime)
         {
+            string procedureName = "Rest";
+
             if (!CheckRobotExist(robotName))
             {
                 string msg = string.Format(ExceptionMessages.InexistingRobot, robotName);
                 throw new ArgumentException(msg);
             }
 
-            throw new NotImplementedException();
+            IRobot currRobot = this._garage.Robots[robotName];
+
+            this._procedures[procedureName.ToLower()].DoService(currRobot, procedureTime);
+
+            return $"{currRobot.Name} had rest procedure";
         }
 
         public string Sell(string robotName, string ownerName)
@@ -127,29 +145,50 @@ namespace RobotService.Core
                 throw new ArgumentException(msg);
             }
 
-            throw new NotImplementedException();
+            bool currRobot = this._garage.Robots[robotName].IsChipped;
+
+            this._garage.Sell(robotName, ownerName);
+
+            if (currRobot)
+            {
+                return $"{ownerName} bought robot with chip";
+            }
+
+            return $"{ownerName} bought robot without chip";
         }
 
         public string TechCheck(string robotName, int procedureTime)
         {
+            string procedureName = "TechCheck";
+
             if (!CheckRobotExist(robotName))
             {
                 string msg = string.Format(ExceptionMessages.InexistingRobot, robotName);
                 throw new ArgumentException(msg);
             }
 
-            throw new NotImplementedException();
+            IRobot currRobot = this._garage.Robots[robotName];
+
+            this._procedures[procedureName.ToLower()].DoService(currRobot, procedureTime);
+
+            return $"{currRobot.Name} had tech check procedure";
         }
 
         public string Work(string robotName, int procedureTime)
         {
+            string procedureName = "Work";
+
             if (!CheckRobotExist(robotName))
             {
                 string msg = string.Format(ExceptionMessages.InexistingRobot, robotName);
                 throw new ArgumentException(msg);
             }
 
-            throw new NotImplementedException();
+            IRobot currRobot = this._garage.Robots[robotName];
+
+            this._procedures[procedureName.ToLower()].DoService(currRobot, procedureTime);
+
+            return $"{currRobot.Name} was working for {procedureTime} hours";
         }
 
         private bool CheckRobotExist(string robotName)
@@ -167,33 +206,34 @@ namespace RobotService.Core
             foreach (var p in Assembly.GetAssembly(typeof(Procedure)).GetTypes()
                 .Where(ty => ty.IsSubclassOf(typeof(Procedure))))
             {
-                _procedures.Add(p.Name, null);
+                string name = p.Name.ToLower();
+                _procedures.Add(name, null);
 
                 switch (p.Name)
                 {
                     case "Charge":
                         IProcedure charge = new Charge();
-                        _procedures[p.Name] = charge;
+                        _procedures[name] = charge;
                         break;
                     case "Chip":
                         IProcedure chip = new Chip();
-                        _procedures[p.Name] = chip;
+                        _procedures[name] = chip;
                         break;
                     case "Polish":
                         IProcedure polish = new Polish();
-                        _procedures[p.Name] = polish;
+                        _procedures[name] = polish;
                         break;
                     case "Rest":
                         IProcedure rest = new Rest();
-                        _procedures[p.Name] = rest;
+                        _procedures[name] = rest;
                         break;
                     case "TechCheck":
                         IProcedure techCheck = new TechCheck();
-                        _procedures[p.Name] = techCheck;
+                        _procedures[name] = techCheck;
                         break;
                     case "Work":
                         IProcedure work = new Work();
-                        _procedures[p.Name] = work;
+                        _procedures[name] = work;
                         break;
                 }
             }
