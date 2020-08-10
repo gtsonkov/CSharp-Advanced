@@ -12,7 +12,8 @@ namespace RobotService.Models.Procedures
 
             if (robot.IsChipped)
             {
-                throw new ArgumentException(ExceptionMessages.AlreadyChipped);
+                string msg = string.Format(ExceptionMessages.AlreadyChipped, robot.Name);
+                throw new ArgumentException(msg);
             }
 
             robot.ProcedureTime -= procedureTime;

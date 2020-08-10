@@ -36,7 +36,7 @@ namespace RobotService.Core
 
             if (!CheckRobotExist(robotName))
             {
-                string msg = string.Format(ExceptionMessages.InexistingRobot,robotName);
+                string msg = string.Format(ExceptionMessages.InexistingRobot, robotName);
                 throw new ArgumentException(msg);
             }
 
@@ -59,7 +59,7 @@ namespace RobotService.Core
 
             IRobot currRobot = this._garage.Robots[robotName];
 
-            this._procedures[procedureName.ToLower()].DoService(currRobot,procedureTime);
+            this._procedures[procedureName.ToLower()].DoService(currRobot, procedureTime);
 
             return $"{currRobot.Name} had chip procedure";
         }
@@ -73,7 +73,7 @@ namespace RobotService.Core
         {
             if (!this._validRobotTypes.Contains(robotType))
             {
-                string msg = string.Format(ExceptionMessages.InvalidRobotType,robotType);
+                string msg = string.Format(ExceptionMessages.InvalidRobotType, robotType);
 
                 throw new ArgumentException(msg);
             }
@@ -83,7 +83,7 @@ namespace RobotService.Core
             switch (robotType)
             {
                 case "HouseholdRobot":
-                    currentRobot = new HouseholdRobot(name,energy,happiness,procedureTime);
+                    currentRobot = new HouseholdRobot(name, energy, happiness, procedureTime);
 
                     break;
 

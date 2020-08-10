@@ -29,7 +29,7 @@ namespace RobotService.Models.Procedures
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(this.GetType().Name);
-            foreach (var robot in Robots)
+            foreach (IRobot robot in Robots)
             {
                 sb.AppendLine(robot.ToString());
             }

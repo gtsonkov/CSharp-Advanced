@@ -42,16 +42,16 @@ namespace RobotService.Models.Garages
 
         public void Sell(string robotName, string ownerName)
         {
-            if (!this.Robots.ContainsKey(robotName))
+            if (!this._robots.ContainsKey(robotName))
             {
                 string msg = string.Format(ExceptionMessages.InexistingRobot, robotName);
                 throw new ArgumentException(msg);
             }
 
-            var currRobot = this.Robots[robotName];
+            var currRobot = this._robots[robotName];
 
-            currRobot.IsBought = true;
             currRobot.Owner = ownerName;
+            currRobot.IsBought = true;
 
             this._robots.Remove(robotName);
         }

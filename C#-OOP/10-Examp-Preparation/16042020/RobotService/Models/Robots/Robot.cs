@@ -9,7 +9,6 @@ namespace RobotService.Models.Robots
         private const string DefautRobotOwner = "Service";
         private int happiness;
         private int energy;
-        private string owner;
 
         public Robot(string name, int energy, int happiness, int procedureTime)
         {
@@ -60,18 +59,7 @@ namespace RobotService.Models.Robots
 
         public int ProcedureTime { get; set; }
 
-        public string Owner
-        {
-            get
-            {
-                return this.owner;
-            }
-
-            set
-            {
-                this.owner = value;
-            }
-        }
+        public string Owner { get; set; }
 
         public bool IsBought { get ; set ; }
 
@@ -79,6 +67,6 @@ namespace RobotService.Models.Robots
 
         public bool IsChecked { get ; set; }
 
-        public override string ToString() => $" Robot type: {this.GetType().Name} - {this.Name} - Happiness: {this.Happiness} - Energy: {this.Happiness}";
+        public override string ToString() => $" Robot type: {this.GetType().Name} - {this.Name} - Happiness: {this.Happiness} - Energy: {this.Energy}";
     }
 }
