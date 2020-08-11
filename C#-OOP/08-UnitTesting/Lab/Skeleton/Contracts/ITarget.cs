@@ -1,4 +1,4 @@
-﻿namespace Skeleton
+﻿namespace Skeleton.Contracts
 {
     public interface ITarget
     {

@@ -1,4 +1,4 @@
-﻿using Skeleton;
+﻿using Skeleton.Contracts;
 
 public class Hero
 {

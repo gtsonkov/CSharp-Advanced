@@ -1,4 +1,4 @@
-﻿using Skeleton;
+﻿using Skeleton.Contracts;
 using System;
 
 public class Dummy : ITarget
