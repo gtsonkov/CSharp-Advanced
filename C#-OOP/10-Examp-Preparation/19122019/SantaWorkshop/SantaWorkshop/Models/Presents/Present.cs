@@ -10,7 +10,8 @@ namespace SantaWorkshop.Models.Presents
 
         public Present(string name, int energyRequired)
         {
-
+            this.Name = name;
+            this.EnergyRequired = energyRequired;
         }
 
         public string Name
@@ -24,7 +25,7 @@ namespace SantaWorkshop.Models.Presents
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Present name cannot be null or empty");
+                    throw new ArgumentException("Present name cannot be null or empty.");
                 }
 
                 this._name = value;

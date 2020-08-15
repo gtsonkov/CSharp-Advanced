@@ -11,19 +11,22 @@ namespace SantaWorkshop.Models.Workshops
         {
             while (true)
             {
-                if (dwarf.Energy != 0 && dwarf.Instruments.Any(i => !i.IsBroken() && !present.IsDone()))
+                if (dwarf.Energy > 0 && dwarf.Instruments.Any(i => !i.IsBroken()))
                 {
-                    if (dwarf.Instruments.Any(i => !i.IsBroken()))
+                    var instrument = dwarf.Instruments.FirstOrDefault(x => !x.IsBroken());
+                    instrument.Use();
+                    dwarf.Work();
+                    present.GetCrafted();
+
+                    if (present.IsDone())
                     {
-                        var instrument = dwarf.Instruments.FirstOrDefault(x => !x.IsBroken());
-                        instrument.Use();
-                        dwarf.Work();
-                        present.GetCrafted();
+                        return;
                     }
                 }
+
                 else
                 {
-                    break;
+                    return;
                 }
             }
         }

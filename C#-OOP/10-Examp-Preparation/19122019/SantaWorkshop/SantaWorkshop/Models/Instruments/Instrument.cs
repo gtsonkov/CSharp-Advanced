@@ -29,7 +29,7 @@ namespace SantaWorkshop.Models.Instruments
             }
         }
 
-        public bool IsBroken() => this.Power > 0;
+        public bool IsBroken() => this.Power <= 0;
 
         public void Use()
         {

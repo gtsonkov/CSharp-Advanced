@@ -2,6 +2,8 @@
 using SantaWorkshop.Models.Instruments.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace SantaWorkshop.Models.Dwarfs
 {
@@ -64,6 +66,16 @@ namespace SantaWorkshop.Models.Dwarfs
         public virtual void Work()
         {
             this.Energy -= 10;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Name: {this.Name}");
+            sb.AppendLine($"Energy: {this.Energy}");
+            sb.AppendLine($"Instruments {this._instruments.Where(i => !i.IsBroken()).Count()} not broken left");
+            return sb.ToString().TrimEnd();
         }
     }
 }
