@@ -9,7 +9,7 @@
             this.Name = name;
             this.MaximumBattery = maximumBattery;
             this.Battery = maximumBattery;
-    }
+        }
 
         public string Name { get; set; }
 
