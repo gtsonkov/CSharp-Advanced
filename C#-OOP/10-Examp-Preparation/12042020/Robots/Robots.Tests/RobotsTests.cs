@@ -192,5 +192,34 @@
             });
 
         }
+
+        [Test]
+        public void ChargeShoudIncreaseRobotEnergy()
+        {
+            string robotName = "Misho";
+            int maxBaterry = 100;
+            Robot testRobot = new Robot(robotName, maxBaterry);
+
+            this.robotManger.Add(testRobot);
+
+            string job = "GoToPark";
+            int jobEnergyUstage = 60;
+
+            this.robotManger.Work(robotName, job, jobEnergyUstage);
+
+            this.robotManger.Charge(robotName);
+
+            Assert.AreEqual(maxBaterry,testRobot.Battery);
+        }
+
+        [Test]
+        public void TryingToChargeUnexistingRobotShoudThrowException()
+        {
+            string robotName = "Misho";
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                this.robotManger.Charge(robotName);
+            });
+        }
     }
 }
