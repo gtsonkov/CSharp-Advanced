@@ -14,19 +14,20 @@ namespace SantaWorkshop.Core
 {
     public class Controller : IController
     {
-        private DwarfRepository _dwarfs;
+        private DwarfRepository dwarfs;
 
-        private PresentRepository _presets;
+        private PresentRepository presents;
 
         public Controller()
         {
-            this._dwarfs = new DwarfRepository();
-            this._presets = new PresentRepository();
+            this.dwarfs = new DwarfRepository();
+            this.presents = new PresentRepository();
         }
 
         public string AddDwarf(string dwarfType, string dwarfName)
         {
             IDwarf currDwarf = null;
+
             switch (dwarfType)
             {
                 case "HappyDwarf":
@@ -41,16 +42,16 @@ namespace SantaWorkshop.Core
                     throw new InvalidOperationException("Invalid dwarf type.");
             }
 
-            this._dwarfs.Add(currDwarf);
+            this.dwarfs.Add(currDwarf);
 
-            string msg = string.Format(OutputMessages.DwarfAdded,currDwarf.GetType().Name,currDwarf.Name);
+            string msg = string.Format(OutputMessages.DwarfAdded,(currDwarf.GetType().Name),currDwarf.Name);
 
             return msg;
         }
 
         public string AddInstrumentToDwarf(string dwarfName, int power)
         {
-            var currDwarf = _dwarfs.FindByName(dwarfName);
+            var currDwarf = dwarfs.FindByName(dwarfName);
 
             if (currDwarf == null)
             {
@@ -70,27 +71,28 @@ namespace SantaWorkshop.Core
         {
             Present currPresent = new Present(presentName, energyRequired);
 
-            this._presets.Add(currPresent);
+            this.presents.Add(currPresent);
 
-            string msg = string.Format(OutputMessages.PresentAdded, presentName);
+            string msg = string.Format(OutputMessages.PresentAdded, currPresent.Name);
 
             return msg;
         }
 
         public string CraftPresent(string presentName)
         {
-            var team = this._dwarfs.Models
+            var team = this.dwarfs.Models
                 .Where(d => d.Energy >= 50)
-                .OrderByDescending(d => d.Energy);
+                .OrderByDescending(x => x.Energy)
+                .ToList();
 
-            if (!team.Any())
+            if (team.Count() == 0)
             {
                 throw new InvalidOperationException(ExceptionMessages.DwarfsNotReady);
             }
 
             Workshop workshop = new Workshop();
 
-            var presentToCraft = this._presets.FindByName(presentName);
+            var presentToCraft = this.presents.FindByName(presentName);
 
             foreach (var d in team)
             {
@@ -99,7 +101,14 @@ namespace SantaWorkshop.Core
 
                 if (d.Energy == 0)
                 {
-                    this._dwarfs.Remove(d);
+                    this.dwarfs.Remove(d);
+                    team.Remove(d);
+                }
+
+                if (!d.Instruments.Any())
+                {
+                    team.Remove(d);
+                    //this._dwarfs.Remove(d);
                 }
 
                 if (presentToCraft.IsDone())
@@ -119,9 +128,9 @@ namespace SantaWorkshop.Core
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine($"{this._presets.Models.Where(p => p.IsDone()).Count()} presents are done!");
+            sb.AppendLine($"{this.presents.Models.Where(p => p.IsDone()).Count()} presents are done!");
             sb.AppendLine("Dwarfs info:");
-            var dwarfs = this._dwarfs.Models;
+            var dwarfs = this.dwarfs.Models;
 
             foreach (var dw in dwarfs)
             {

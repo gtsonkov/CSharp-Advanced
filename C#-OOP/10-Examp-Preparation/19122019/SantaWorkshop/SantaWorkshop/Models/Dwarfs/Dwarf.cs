@@ -47,12 +47,7 @@ namespace SantaWorkshop.Models.Dwarfs
             //private
             protected set
             {
-                if (value < 0)
-                {
-                    value = 0;
-                }
-
-                this._energy = value;
+                this._energy = value > 0 ? value : 0;
             }
         }
 

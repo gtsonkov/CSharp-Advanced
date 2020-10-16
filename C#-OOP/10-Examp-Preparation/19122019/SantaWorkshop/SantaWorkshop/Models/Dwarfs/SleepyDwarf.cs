@@ -12,8 +12,8 @@
 
         public override void Work()
         {
-            this.Energy -= 5;
             base.Work();
+            this.Energy -= 5;
         }
     }
 }

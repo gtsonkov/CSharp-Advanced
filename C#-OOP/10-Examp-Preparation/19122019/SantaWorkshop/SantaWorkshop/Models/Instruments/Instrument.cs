@@ -4,7 +4,7 @@ namespace SantaWorkshop.Models.Instruments
 {
     public class Instrument : IInstrument
     {
-        private int _energy;
+        private int _power;
 
         public Instrument(int power)
         {
@@ -15,21 +15,16 @@ namespace SantaWorkshop.Models.Instruments
         {
             get
             {
-                return this._energy;
+                return this._power;
             }
 
             private set
             {
-                if (value < 0)
-                {
-                    value = 0;
-                }
-
-                this._energy = value;
+                this._power = value > 0 ? value : 0;
             }
         }
 
-        public bool IsBroken() => this.Power <= 0;
+        public bool IsBroken() => this.Power == 0;
 
         public void Use()
         {

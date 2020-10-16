@@ -23,7 +23,7 @@ namespace SantaWorkshop.Models.Presents
 
             private set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value) || value == string.Empty)
                 {
                     throw new ArgumentException("Present name cannot be null or empty.");
                 }
@@ -41,12 +41,7 @@ namespace SantaWorkshop.Models.Presents
 
             private set
             {
-                if (value < 0)
-                {
-                    value = 0;
-                }
-
-                this._energyRequired = value;
+                this._energyRequired = value > 0 ? value : 0;
             }
         }
 
